@@ -25,20 +25,30 @@ namespace View
             InitializeComponent();
         }
 
-        private void ConvertToCelsius(object sender, RoutedEventArgs e)
+        private void ConvertCelsius(object sender, RoutedEventArgs e)
         {
-            var val = double.Parse(textBox.Text);
-            var cels = (val - 32) / 1.8;
-            var celsius = cels.ToString();
-            textBox.Text = celsius;
+            var val = slider.Value; 
+            var f = (val * 1.8) + 32;
+            var k = val + 273.15;
+            fahrenheitTextBox.Text = f.ToString();
         }
 
-        private void ConvertToFahrenheit(object sender, RoutedEventArgs e)
+        private void ConvertFahrenheit(object sender, RoutedEventArgs e)
         {
-            var val = double.Parse(textBox2.Text);
-            var far = (val * 1.8) + 32;
-            var fahrenheit = far.ToString();
-            textBox.Text = fahrenheit;
+            var val = slider.Value;
+            var c = (val - 32) / 1.8;
+            var k = c + 273.15;
+            celsiusTextBox.Text = c.ToString();
+        }
+
+        private void ConvertKelvin(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            var val = slider.Value;
         }
     }
 }
