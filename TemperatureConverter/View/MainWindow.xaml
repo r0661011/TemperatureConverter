@@ -25,45 +25,42 @@
             <Setter Property="Background" Value="AliceBlue" />
         </Style>
     </Window.Resources>
-    
+
     <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Celsius" Style="{StaticResource labelStyle}"/>
-            <TextBox Grid.Row="1" x:Name="celsiusTextBox" FontSize="16" TextAlignment="Center"/>
+            <TextBlock Grid.Row="0" Text="Celsius" Style="{StaticResource labelStyle}" />
+            <TextBox Grid.Row="1"  x:Name="celsiusTextBox" Style="{StaticResource textBoxStyle}" />
         </Grid>
-
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Fahrenheit" Style="{StaticResource labelStyle}"/>
-            <TextBox Grid.Row="1" x:Name="fahrenheitTextBox" FontSize="16" TextAlignment="Center"/>
+            <TextBlock Grid.Row="0" Text="Fahrenheit" Style="{StaticResource labelStyle}" />
+            <TextBox Grid.Row="1"  x:Name="fahrenheitTextBox" Style="{StaticResource textBoxStyle}" />
         </Grid>
-
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Kelvin" Style="{StaticResource labelStyle}"/>
-            <TextBox Grid.Row="1" Text="{Binding ElementName=slider, Path=Value}" FontSize="16" TextAlignment="Center"/>
+            <TextBlock Grid.Row="0" Text="Kelvin" Style="{StaticResource labelStyle}" />
+            <TextBox Grid.Row="1"  x:Name="kelvinTextBox" Style="{StaticResource textBoxStyle}" />
         </Grid>
-
-        <Slider x:Name="slider" Minimum="0" Maximum="1000" ValueChanged="SliderValueChanged"/>
-
+        <Slider x:Name="slider" Minimum="0" Maximum="1000" ValueChanged="SliderValueChanged" />
     </StackPanel>
+
 </Window>

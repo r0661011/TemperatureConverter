@@ -27,18 +27,10 @@ namespace View
 
         private void ConvertCelsius(object sender, RoutedEventArgs e)
         {
-            var val = slider.Value; 
-            var f = (val * 1.8) + 32;
-            var k = val + 273.15;
-            fahrenheitTextBox.Text = f.ToString();
         }
 
         private void ConvertFahrenheit(object sender, RoutedEventArgs e)
         {
-            var val = slider.Value;
-            var c = (val - 32) / 1.8;
-            var k = c + 273.15;
-            celsiusTextBox.Text = c.ToString();
         }
 
         private void ConvertKelvin(object sender, RoutedEventArgs e)
@@ -48,7 +40,16 @@ namespace View
 
         private void SliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            var val = slider.Value;
+            var kelvin = slider.Value;
+            var celsius = kelvin - 273.15;
+            var fahrenheit = celsius * 1.8 + 32;
+
+            var kelvinString = kelvin.ToString();
+            var fahrenheitString = fahrenheit.ToString();
+            var celsiusString = celsius.ToString();
+
+            fahrenheitTextBox.Text = fahrenheitString;
+            celsiusTextBox.Text = celsiusString;
         }
     }
 }
