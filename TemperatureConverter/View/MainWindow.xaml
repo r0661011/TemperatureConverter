@@ -27,9 +27,8 @@
         <Style x:Key="buttonStyle" TargetType="{x:Type Button}">
             <Setter Property="FontSize" Value="16" />
         </Style>
-        <local:CelsiusConverter x:Name="celsiusConverter">
-            
-        </local:CelsiusConverter>
+        <local:CelsiusConverter x:Key="celsiusConverter"/>
+        <local:FahrenheitConverter x:Key="fahrenheitConverter"/>
     </Window.Resources>
     <StackPanel>
         <Grid>
@@ -41,7 +40,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Celsius" Style="{StaticResource labelStyle}" />
-            <TextBox Grid.Row="1"  x:Name="celsiusTextBox" Text="{Binding Converter=celsiusConverter}" Style="{StaticResource textBoxStyle}" />
+            <TextBox Grid.Row="1"  x:Name="celsiusTextBox" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource celsiusConverter}}" Style="{StaticResource textBoxStyle}" />
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -52,7 +51,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Fahrenheit" Style="{StaticResource labelStyle}" />
-            <TextBox Grid.Row="1"  x:Name="fahrenheitTextBox" Style="{StaticResource textBoxStyle}" />
+            <TextBox Grid.Row="1"  x:Name="fahrenheitTextBox" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource fahrenheitConverter}}" Style="{StaticResource textBoxStyle}" />
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -65,6 +64,6 @@
             <TextBlock Grid.Row="0" Text="Kelvin" Style="{StaticResource labelStyle}" />
             <TextBox Grid.Row="1"  Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource textBoxStyle}" />
         </Grid>
-        <Slider x:Name="slider" Minimum="0" Maximum="1000" ValueChanged="SliderValueChanged" />
+        <Slider x:Name="slider" Minimum="0" Maximum="1000" />
     </StackPanel>
 </Window>
