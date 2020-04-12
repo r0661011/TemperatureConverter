@@ -16,16 +16,21 @@
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
-            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="Padding" Value="2" />
         </Style>
-
-        <Style x:Key="buttonStyle" TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="AliceBlue" />
+        <Style x:Key="textBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="16" />
         </Style>
+        <Style x:Key="buttonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+        <local:CelsiusConverter x:Name="celsiusConverter">
+            
+        </local:CelsiusConverter>
     </Window.Resources>
-
     <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -36,7 +41,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Celsius" Style="{StaticResource labelStyle}" />
-            <TextBox Grid.Row="1"  x:Name="celsiusTextBox" Style="{StaticResource textBoxStyle}" />
+            <TextBox Grid.Row="1"  x:Name="celsiusTextBox" Text="{Binding Converter=celsiusConverter}" Style="{StaticResource textBoxStyle}" />
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -58,9 +63,8 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Kelvin" Style="{StaticResource labelStyle}" />
-            <TextBox Grid.Row="1"  x:Name="kelvinTextBox" Style="{StaticResource textBoxStyle}" />
+            <TextBox Grid.Row="1"  Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource textBoxStyle}" />
         </Grid>
         <Slider x:Name="slider" Minimum="0" Maximum="1000" ValueChanged="SliderValueChanged" />
     </StackPanel>
-
 </Window>
