@@ -25,56 +25,20 @@ namespace View
         {
             InitializeComponent();
         }
-
-        private void ConvertCelsius(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void ConvertFahrenheit(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void ConvertKelvin(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 
-    public class CelsiusConverter : IValueConverter
+    public class TemparatureConverter : ITemperatureScale
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var kelvin = (double)value;
-            var celsius = kelvin - 273.15;
+        public string Name => throw new NotImplementedException();
 
-            return celsius.ToString();
+        public double ConvertFromKelvin(double temperature)
+        {
+            throw new NotImplementedException();
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public double ConvertToKelvin(double temperature)
         {
-            var celsius = double.Parse((string)value);
-            var kelvin = celsius + 273.15;
-
-            return kelvin;
-        }
-    }
-
-    public class FahrenheitConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var kelvin = (double)value;
-            var fahrenheit = kelvin * 1.8 - 459.67;
-
-            return fahrenheit.ToString();
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var fahrenheit = double.Parse((string)value);
-            var kelvin = (fahrenheit + 459.67) / 1.8;
-
-            return kelvin;
+            throw new NotImplementedException();
         }
     }
 }
