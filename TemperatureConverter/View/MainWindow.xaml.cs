@@ -27,9 +27,8 @@ namespace View
         }
     }
 
-    public class TemparatureConverter : IValueConverter
+    public class TemparatureConverter : ITemperatureScale
     {
-        public TemparatureConverter tempConverter { get; set; }
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
