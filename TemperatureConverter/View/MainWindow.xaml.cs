@@ -27,16 +27,15 @@ namespace View
         }
     }
 
-    public class TemparatureConverter : ITemperatureScale
+    public class TemparatureConverter : IValueConverter
     {
-        public string Name => throw new NotImplementedException();
-
-        public double ConvertFromKelvin(double temperature)
+        public TemparatureConverter tempConverter { get; set; }
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
 
-        public double ConvertToKelvin(double temperature)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
