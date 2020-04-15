@@ -27,9 +27,9 @@ namespace View
         }
     }
 
-    public class TemparatureConverter : IValueConverter
+    public class TemperatureConverter : IValueConverter
     {
-        public ITemperatureScale temperatureScale { get; set; }
+        public ITemperatureScale TemperatureScale { get; set; }
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
@@ -40,4 +40,5 @@ namespace View
             throw new NotImplementedException();
         }
     }
+
 }
