@@ -32,7 +32,8 @@ namespace View
         public ITemperatureScale TemperatureScale { get; set; }
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            var kelvin = (double)value;
+            return TemperatureScale.ConvertFromKelvin(kelvin);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
