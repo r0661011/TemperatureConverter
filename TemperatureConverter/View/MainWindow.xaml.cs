@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
+using System.ComponentModel;
 
 namespace View
 {
@@ -24,22 +26,11 @@ namespace View
         public MainWindow()
         {
             InitializeComponent();
-        }
-    }
 
-    public class TemperatureConverter : IValueConverter
-    {
-        public ITemperatureScale TemperatureScale { get; set; }
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var kelvin = (double)value;
-            return TemperatureScale.ConvertFromKelvin(kelvin);
-        }
+            this.DataContext = new ConverterViewModel();
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
         }
+        
     }
 
 }
