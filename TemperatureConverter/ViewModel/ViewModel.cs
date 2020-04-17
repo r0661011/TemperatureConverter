@@ -7,38 +7,26 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using Cells;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace ViewModel
 {
     public class ConverterViewModel
     {
-        public Cell<double> temperatureInKelvin;
-
+        
         public ConverterViewModel()
         {
             this.Kelvin = new TemperatureScaleViewModel(this, new KelvinTemperatureScale());
             this.Fahrenheit = new TemperatureScaleViewModel(this, new FahrenheitTemperatureScale());
             this.Celsius = new TemperatureScaleViewModel(this, new CelsiusTemperatureScale());
-            temperatureInKelvin = new Cell<double>();
+            TemperatureInKelvin = new Cell<double>();
         }
-        public Cell<double> TemperatureInKelvin
-        {
-            get
-            {
-                return temperatureInKelvin;
-            }
-
-            set
-            {
-                temperatureInKelvin = value;
-                temperatureInKelvin.PropertyChanged += (sender, args) => Debug.WriteLine("x has changed!");
-            }
-        }
+        public Cell<double> TemperatureInKelvin { get; }
 
         public TemperatureScaleViewModel Kelvin { get; }
+
         public TemperatureScaleViewModel Fahrenheit { get; }
+
         public TemperatureScaleViewModel Celsius { get; }
 
         public IEnumerable<TemperatureScaleViewModel> Scales
