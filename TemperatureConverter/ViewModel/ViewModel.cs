@@ -6,26 +6,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using Cells;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace ViewModel
 {
-    class ViewModel
+    public class ConverterViewModel
     {
-        
-    }
-
-    class ConverterViewModel : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-        private double temperatureInKelvin;
+        public Cell<double> temperatureInKelvin;
 
         public ConverterViewModel()
         {
             this.Kelvin = new TemperatureScaleViewModel(this, new KelvinTemperatureScale());
             this.Fahrenheit = new TemperatureScaleViewModel(this, new FahrenheitTemperatureScale());
             this.Celsius = new TemperatureScaleViewModel(this, new CelsiusTemperatureScale());
+            temperatureInKelvin = new Cell<double>();
         }
-        public double TemperatureInKelvin
+        public Cell<double> TemperatureInKelvin
         {
             get
             {
@@ -35,7 +33,7 @@ namespace ViewModel
             set
             {
                 temperatureInKelvin = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TemperatureInKelvin)));
+                temperatureInKelvin.PropertyChanged += (sender, args) => Debug.WriteLine("x has changed!");
             }
         }
 
@@ -52,39 +50,24 @@ namespace ViewModel
                 yield return Kelvin;
             }
         }
-
-
-        public class TemperatureScaleViewModel : INotifyPropertyChanged
-        {
-            private readonly ConverterViewModel parent;
-            private readonly ITemperatureScale temperatureScale;
-
-            public TemperatureScaleViewModel(ConverterViewModel parent, ITemperatureScale temperatureScale)
-            {
-                this.parent = parent;
-                this.temperatureScale = temperatureScale;
-
-                this.parent.PropertyChanged += (sender, args) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Temperature)));
-            }
-
-            public string Name => temperatureScale.Name;
-
-            public double Temperature
-            {
-                get
-                {
-                    return temperatureScale.ConvertFromKelvin(parent.TemperatureInKelvin);
-                }
-                set
-                {
-
-                    parent.TemperatureInKelvin = temperatureScale.ConvertToKelvin(value);
-                }
-            }
-
-            public event PropertyChangedEventHandler PropertyChanged;
-        }
     }
 
-    
+    public class TemperatureScaleViewModel
+    {
+        private readonly ConverterViewModel parent;
+
+        private readonly ITemperatureScale temperatureScale;
+
+        public TemperatureScaleViewModel(ConverterViewModel parent, ITemperatureScale temperatureScale)
+        {
+            this.parent = parent;
+            this.temperatureScale = temperatureScale;
+
+            this.Temperature = this.parent.TemperatureInKelvin.Derive(kelvin => temperatureScale.ConvertFromKelvin(kelvin));
+        }
+
+        public string Name => temperatureScale.Name;
+
+        public Cell<double> Temperature { get; }
+    }
 }
