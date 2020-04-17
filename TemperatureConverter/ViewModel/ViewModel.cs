@@ -1,33 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Model;
 using Cells;
-using System.Diagnostics;
+using Model;
 
 namespace ViewModel
 {
     public class ConverterViewModel
     {
-        
         public ConverterViewModel()
         {
+            this.TemperatureInKelvin = new Cell<double>();
+
             this.Kelvin = new TemperatureScaleViewModel(this, new KelvinTemperatureScale());
-            this.Fahrenheit = new TemperatureScaleViewModel(this, new FahrenheitTemperatureScale());
             this.Celsius = new TemperatureScaleViewModel(this, new CelsiusTemperatureScale());
-            TemperatureInKelvin = new Cell<double>();
+            this.Fahrenheit = new TemperatureScaleViewModel(this, new FahrenheitTemperatureScale());
         }
+
         public Cell<double> TemperatureInKelvin { get; }
 
         public TemperatureScaleViewModel Kelvin { get; }
 
-        public TemperatureScaleViewModel Fahrenheit { get; }
-
         public TemperatureScaleViewModel Celsius { get; }
+
+        public TemperatureScaleViewModel Fahrenheit { get; }
 
         public IEnumerable<TemperatureScaleViewModel> Scales
         {
