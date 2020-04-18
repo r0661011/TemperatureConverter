@@ -47,7 +47,7 @@ namespace View
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("ValueProperty", typeof(double), typeof(TemperatureScaleControl), new PropertyMetadata(0));
+            DependencyProperty.Register("ValueProperty", typeof(double), typeof(TemperatureScaleControl), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
 
     }
