@@ -50,7 +50,7 @@ namespace ViewModel
             this.parent = parent;
             this.temperatureScale = temperatureScale;
 
-            Temperature = this.parent.TemperatureInKelvin.Derive(kelvin => temperatureScale.ConvertFromKelvin(kelvin));
+            Temperature = this.parent.TemperatureInKelvin.Derive(kelvin => temperatureScale.ConvertFromKelvin(kelvin), t => temperatureScale.ConvertToKelvin(t));
         }
 
         public string Name => temperatureScale.Name;
